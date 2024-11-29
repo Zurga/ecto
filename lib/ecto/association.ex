@@ -767,7 +767,8 @@ defmodule Ecto.Association.Has do
     defaults: [],
     relationship: :child,
     ordered: false,
-    preload_order: []
+    preload_order: [],
+    as: List
   ]
 
   @impl true
@@ -843,6 +844,11 @@ defmodule Ecto.Association.Has do
             "expected `:where` for #{inspect(name)} to be a keyword list, got: `#{inspect(where)}`"
     end
 
+    # unless Protocol.assert_impl!(Enumerable, opts[:as]) do
+    #   raise ArgumentError,
+    #         "expected `:as` for #{inspect(name)} to be a module that implements the `Enumerable` protocol"
+    # end
+
     %__MODULE__{
       field: name,
       cardinality: cardinality,
@@ -855,7 +861,8 @@ defmodule Ecto.Association.Has do
       on_replace: on_replace,
       defaults: defaults,
       where: where,
-      preload_order: preload_order
+      preload_order: preload_order,
+      as: opts[:as] || List
     }
   end
 

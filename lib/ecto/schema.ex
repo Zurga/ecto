@@ -2104,7 +2104,8 @@ defmodule Ecto.Schema do
     :defaults,
     :on_replace,
     :where,
-    :preload_order
+    :preload_order,
+    :as
   ]
 
   @doc false
